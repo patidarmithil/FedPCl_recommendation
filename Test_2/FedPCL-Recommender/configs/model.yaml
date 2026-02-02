@@ -1,0 +1,17 @@
+model:
+  name: "LightGCN"
+
+  embedding_dim: 64          # d = 64
+  num_layers: 3              # typical LightGCN depth
+  aggregation: "mean"        # layer aggregation (Eq.2)
+
+  predictor: "dot_product"   # Eq.(3)
+
+training:
+  optimizer: "adam"
+  learning_rate: 0.1         # η = 0.1
+  weight_decay: 1e-6         # β2 L2 regularization
+  batch_size: 2048
+
+  epochs_per_round: 1        # local update per round
+  contrastive_warmup: 20     # disable contrastive first 20 epochs

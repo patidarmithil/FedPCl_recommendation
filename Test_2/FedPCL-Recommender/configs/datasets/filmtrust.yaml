@@ -1,0 +1,11 @@
+dataset:
+  name: "filmtrust"
+  num_users: 1110
+  num_items: 1775
+  interactions: 20453
+
+  implicit: true
+  split: "leave_one_out"
+
+  path_raw: "data/raw/filmtrust/"
+  path_processed: "data/processed/filmtrust/"
