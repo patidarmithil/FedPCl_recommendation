@@ -16,4 +16,4 @@
 1)Motivation improve 
 2)problem formulation before page 8
 3)after 8 paste fedpcl framework digram
-
+4)gdpr in federated
