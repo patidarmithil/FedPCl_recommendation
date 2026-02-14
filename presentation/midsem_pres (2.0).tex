@@ -45,15 +45,18 @@
 \section{Motivation}
 % Slide 4
 \begin{frame}{Motivation}
-  \begin{itemize}
-    \item Centralized training risks user privacy; federated learning (FL) protects local data but faces:
-      \begin{itemize}
-        \item \textbf{Sparse local data} $\Rightarrow$ poor embeddings
-        \item \textbf{Non-IID user distributions} $\Rightarrow$ single global model suboptimal
-      \end{itemize}
-    \item Goal: improve embedding quality (contrastive learning) + provide personalization (cluster + global models).
-  \end{itemize}
+\small
+\begin{itemize}
+  \item Traditional \textbf{centralized recommender systems} require collecting user interaction data on a server, which raises serious \textbf{privacy, security, and regulatory concerns} (e.g., GDPR).
+  
+  \item \textbf{Federated learning (FL)} addresses privacy by keeping user data on local devices and only sharing model updates; however, this setting introduces new challenges for recommendation.
+
+  \item First, each client observes only a \textbf{small and sparse subset} of interactions, making it difficult to learn high-quality user and item embeddings, especially for GNN-based models.
+
+  \item Second, user preferences across clients are \textbf{highly heterogeneous (non-IID)}, so a single globally averaged model (e.g., FedAvg) fails to capture personalized interests and often degrades recommendation performance.
+\end{itemize}
 \end{frame}
+
 
 %-----------------------------------------------------
 \section{Team contributions}
@@ -82,16 +85,76 @@
 \end{frame}
 
 %-----------------------------------------------------
-\section{Related work (short)}
-% Slide 7
-\begin{frame}{Related work (short)}
-  \begin{itemize}
-    \item \textbf{GNNs for recommendation} — LightGCN (2020) and others show benefit of graph propagation for user-item relationships.
-    \item \textbf{Contrastive Learning} — InfoNCE-style objectives applied to graphs and recommender systems to improve representation learning under sparsity.
-    \item \textbf{Federated Recommendation} — FedAvg (McMahan et al., 2017) extended to FedMF, FedGNN, PerFedRec (2022) and other personalized FL algorithms.
-    \item FedPCL integrates these ideas: GNN + structural contrastive learning + personalized aggregation.
-  \end{itemize}
+% Slide 7.1
+\begin{frame}{Related Work: GNNs for Recommendation}
+
+\begin{columns}[T] % T = top aligned
+  %---------------- LEFT COLUMN ----------------
+  \begin{column}{0.58\textwidth}
+    \begin{itemize}
+      \item User–item interactions naturally form a \textbf{bipartite graph}.
+      \item \textbf{Graph Neural Networks (GNNs)} propagate information through neighbors to capture higher-order relationships.
+      \item \textbf{LightGCN (He et al., SIGIR 2020)} simplifies GCNs by removing feature transformation and nonlinearities.
+      \item GNN-based models significantly outperform MF-based methods in sparse recommendation settings.
+    \end{itemize}
+  \end{column}
+
+  %---------------- RIGHT COLUMN ----------------
+  \begin{column}{0.40\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{gnn_recommendation.png}
+  \end{column}
+\end{columns}
+
 \end{frame}
+
+%Slide 7.2
+\begin{frame}{Related Work: Contrastive Learning}
+
+\begin{columns}[T]
+  %---------------- LEFT COLUMN ----------------
+  \begin{column}{0.58\textwidth}
+    \begin{itemize}
+      \item \textbf{Contrastive Learning (CL)} is a self-supervised learning paradigm.
+      \item It maximizes agreement between \textbf{positive pairs} and minimizes similarity with \textbf{negative pairs}.
+      \item \textbf{InfoNCE loss} is widely used in vision, NLP, and graph representation learning.
+      \item In recommender systems, CL improves embedding quality and alleviates \textbf{data sparsity}.
+    \end{itemize}
+  \end{column}
+
+  %---------------- RIGHT COLUMN ----------------
+  \begin{column}{0.40\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{contrastive_learning_graph.png}
+  \end{column}
+\end{columns}
+
+\end{frame}
+
+%Slide 7.3
+\begin{frame}{Related Work: Federated Recommendation}
+
+\begin{columns}[T]
+  %---------------- LEFT COLUMN ----------------
+  \begin{column}{0.58\textwidth}
+    \begin{itemize}
+      \item \textbf{Federated Learning (FL)} enables collaborative training without sharing raw user data.
+      \item \textbf{FedAvg (McMahan et al., 2017)} aggregates local models but assumes IID data.
+      \item Extensions such as \textbf{FedMF}, \textbf{FedGNN}, and \textbf{PerFedRec (2022)} introduce privacy and personalization.
+      \item Key challenges remain: \textbf{non-IID data} and \textbf{data sparsity}.
+      \item \textbf{FedPCL} jointly addresses these via GNNs, contrastive learning, and personalized aggregation.
+    \end{itemize}
+  \end{column}
+
+  %---------------- RIGHT COLUMN ----------------
+  \begin{column}{0.40\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{federated_recommendation.png}
+  \end{column}
+\end{columns}
+
+\end{frame}
+
 
 %-----------------------------------------------------
 \section{Methodology: overview}
@@ -179,39 +242,22 @@
 %-----------------------------------------------------
 \section{Algorithm (2 pages)}
 % Slide 12
-\begin{frame}[fragile]{Algorithm — server loop (page 1 of 2)}
-\begin{block}{High-level pseudocode (server)}
-\begin{verbatim}
-Initialize embeddings U,V and global model h_global.
-while not converged:
-  Cluster user embeddings into K clusters.
-  Randomly select a subset of clients N_t.
-  For each client n in N_t:
-    client computes encrypted gradients (item & model)
-    and sends to server.
-  Aggregate item gradients -> update item embeddings.
-  For each cluster:
-    aggregate model gradients -> update cluster model h_C.
-  Aggregate cluster models -> h_global = average(h_C).
-  Send h_C(u) and h_global to clients.
-end while
-\end{verbatim}
-\end{block}
+
+\begin{frame}{Algorithm 1: FedPCL (Server-side)}
+\centering
+\includegraphics[
+  height=0.85\textheight,
+  keepaspectratio
+]{1.png}
 \end{frame}
 
 % Slide 13
-\begin{frame}[fragile]{Algorithm — client steps (page 2 of 2)}
-\begin{block}{ClientUpdate(n)}
-\begin{verbatim}
-Input: local graph G_n, received h_C, h_global, items
-1. Combine h_local = mu1*h_C + mu2*h_global (personal)
-2. Run local GNN on G_n -> compute e^(l) outputs
-3. Compute L_BPR and structural contrastive losses
-4. Compute gradients for model and item embeddings
-5. Apply LDP: clip and add Laplace noise to gradients
-6. Upload encrypted gradients to server
-\end{verbatim}
-\end{block}
+\begin{frame}{Algorithm 1: FedPCL (Client-side)}
+\centering
+\includegraphics[
+  height=0.6\textheight,
+  keepaspectratio
+]{2.png}
 \end{frame}
 
 %-----------------------------------------------------
@@ -229,18 +275,31 @@ Input: local graph G_n, received h_C, h_global, items
 
 %-----------------------------------------------------
 \section{Baselines (years / sources)}
+
 % Slide 15
 \begin{frame}{Baseline models (and year / source as reported)}
-  \begin{itemize}
-    \item \textbf{LightGCN} — (backbone GNN used, He et al., SIGIR 2020). (centralized strong baseline)
-    \item \textbf{FedAvg} (McMahan et al., 2017) — horizontal FL aggregation method.
-    \item \textbf{FedMF} (Chai et al., 2021) — federated matrix factorization with privacy (homomorphic enc).
-    \item \textbf{FedGNN} — privacy-preserving federated GNN recommendation (paper refs).
-    \item \textbf{PerFedRec} (2022) — personalized federated recommendation via clustering/adaptation.
-    \item \textbf{FPFR} — fair and personalized federated recommendation (paper).
-  \end{itemize}
-  (The FedPCL paper compares against these; see paper for exact citations).
+\small
+\begin{itemize}
+  \item \textbf{LightGCN} (He et al., SIGIR 2020): Centralized GNN-based recommender that simplifies GCNs by removing feature transformation and nonlinear activation, using neighborhood aggregation for collaborative filtering.
+
+  \item \textbf{FedAvg} (McMahan et al., 2017): Standard federated learning algorithm that aggregates client models via weighted averaging, assuming IID data distribution across clients.
+
+  \item \textbf{FedMF} (Chai et al., 2021): Federated matrix factorization framework that jointly learns item embeddings while keeping user embeddings local, using homomorphic encryption to protect gradient privacy.
+\end{itemize}
 \end{frame}
+
+% Slide 16
+\begin{frame}{Baseline models (and year / source as reported) (cont.)}
+\small
+\begin{itemize}
+  \item \textbf{FedGNN} (Wu et al.): Privacy-preserving federated recommendation method that applies GNNs on decentralized user–item graphs and introduces pseudo-interaction sampling to mitigate privacy leakage.
+
+  \item \textbf{PerFedRec} (Luo et al., 2022): Personalized federated GNN-based recommender that clusters users and adapts models locally to alleviate performance degradation caused by non-IID data.
+
+  \item \textbf{FPFR} (Zhang et al.): Fair and personalized federated recommendation framework that introduces attention-based personalization and fairness-aware objectives during federated aggregation.
+\end{itemize}
+\end{frame}
+
 
 %-----------------------------------------------------
 \section{Evaluation metrics}
@@ -282,15 +341,15 @@ Input: local graph G_n, received h_C, h_global, items
 \end{frame}
 
 %-----------------------------------------------------
-\section{Ablation \& Convergence}
+%\section{Ablation \& Convergence}
 % Slide 19
-\begin{frame}{Ablation studies \& convergence (short)}
-  \begin{itemize}
-    \item Ablation: structural contrastive module produces the largest single-module gain; personalization adds further gains (they complement each other).
-    \item Convergence: FedPCL (contrastive + personalized) converges faster than contrastive-only variant (personalization helps speed up training and reduce communication rounds).
-  \end{itemize}
-  (Plots and numeric ablation are in the paper; see experimental section.)
-\end{frame}
+%\begin{frame}{Ablation studies \& convergence (short)}
+%  \begin{itemize}
+ %   \item Ablation: structural contrastive module produces the largest single-module gain; personalization adds further gains (they complement each other).
+  %  \item Convergence: FedPCL (contrastive + personalized) converges faster than contrastive-only variant (personalization helps speed up training and reduce communication rounds).
+  %\end{itemize}
+  %(Plots and numeric ablation are in the paper; see experimental section.)
+%\end{frame}
 
 %-----------------------------------------------------
 \section{Future plans / improvements}
