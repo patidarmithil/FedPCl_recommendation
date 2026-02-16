@@ -6,6 +6,10 @@
 \usepackage{latexsym,xcolor,multicol,booktabs,calligra}
 \usepackage{amsmath,amssymb,BOONDOX-cal,bm}
 \usepackage{graphicx,stackengine}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+
 
 %-----------------------------------------------------
 % Metadata
@@ -59,7 +63,6 @@
 
 
 %-----------------------------------------------------
-\section{Team contributions}
 % Slide 5
 \begin{frame}{Team contributions}
   \textbf{Team members (3):}
@@ -73,7 +76,6 @@
 \end{frame}
 
 %-----------------------------------------------------
-\section{Contributions listed in the paper}
 % Slide 6
 \begin{frame}{Contributions (from the paper)}
   \begin{enumerate}
@@ -85,6 +87,7 @@
 \end{frame}
 
 %-----------------------------------------------------
+\section{Related Work}
 % Slide 7.1
 \begin{frame}{Related Work: GNNs for Recommendation}
 
@@ -157,7 +160,6 @@
 
 
 %-----------------------------------------------------
-\section{Methodology: overview}
 % Slide 8
 \begin{frame}{Methodology — Overview}
   \begin{itemize}
@@ -178,7 +180,7 @@
 \end{frame}
 
 %-----------------------------------------------------
-\section{Methodology: math}
+\section{Key Equations}
 % Slide 9
 \begin{frame}{Key equations (I)}
   \begin{block}{BPR ranking loss}
@@ -217,7 +219,6 @@
 \end{frame}
 
 %-----------------------------------------------------
-\section{Privacy / LDP and aggregation}
 % Slide 11
 \begin{frame}{LDP and aggregation}
   \begin{itemize}
@@ -240,28 +241,71 @@
 \end{frame}
 
 %-----------------------------------------------------
-\section{Algorithm (2 pages)}
+\section{Algorithm}
 % Slide 12
 
-\begin{frame}{Algorithm 1: FedPCL (Server-side)}
-\centering
-\includegraphics[
-  height=0.85\textheight,
-  keepaspectratio
-]{1.png}
+
+\begin{frame}[fragile]{Algorithm: FedPCL}
+
+\resizebox{!}{0.41\textheight}{
+\begin{minipage}{\textwidth}
+\begin{algorithm}[H]
+\caption{FedPCL}
+\begin{algorithmic}[1]
+
+\REQUIRE Embedding size $d$; Learning rate $\eta$; Clients local graph $\{G_n\}_{n=1}^{N}$; 
+Initialize $U=[e_n]_{n=1}^{N}$, $V=[e_i]_{i=1}^{M}$, $h_{\text{global}}$
+
+\ENSURE Local client embeddings $U=[e_n]_{n=1}^{N}$; Model parameters $h$
+
+\STATE \textbf{// server}
+\WHILE{not converge}
+    \STATE Cluster all users $U$ into $K$ clusters \hfill $\triangleright$ user clustering
+    \STATE Randomly select a subset $\mathcal{N}$ from user set $U$
+    \FOR{each $n \in \mathcal{N}$}
+        \STATE $\tilde{g}_i^n, \tilde{g}_{C(n)} \leftarrow \textbf{ClientUpdate}(n, e_i^t, h_C, h_{\text{global}})$
+    \ENDFOR
+    \STATE $g_i \leftarrow$ Eq.\,(10) \hfill $\triangleright$ item gradients
+    \STATE $e_i^t \leftarrow$ Eq.\,(11) \hfill $\triangleright$ item embeddings
+    \STATE $h_C^t \leftarrow$ Eq.\,(12) \hfill $\triangleright$ clustering model
+    \STATE $h_{\text{global}}^t \leftarrow$ Eq.\,(13) \hfill $\triangleright$ global model
+\ENDWHILE
+
+\end{algorithmic}
+\end{algorithm}
+\end{minipage}
+}
+
 \end{frame}
 
-% Slide 13
-\begin{frame}{Algorithm 1: FedPCL (Client-side)}
-\centering
-\includegraphics[
-  height=0.6\textheight,
-  keepaspectratio
-]{2.png}
-\end{frame}
 
 %-----------------------------------------------------
-\section{Datasets used}
+% Slide 13
+
+\begin{frame}[fragile]{Algorithm: FedPCL (Cont.)}
+
+\small
+
+\begin{algorithm}[H]
+\begin{algorithmic}[13]
+
+\STATE \textbf{// client}
+\STATE \textbf{function} \textsc{ClientUpdate}$(n, e_i^t, h_C, h_{\text{global}})$
+    \STATE Calculate the embedding gradients $\nabla U_n$ and $g_i^n$ by Eq.\,(7)
+    \STATE Calculate the model gradients $g_m^n$ by Eq.\,(8)
+    \STATE $e_n \leftarrow e_n - \eta \nabla U_n$ \hfill $\triangleright$ user embedding
+    \STATE $\tilde{g}_i^n, \tilde{g}_{C(n)} \leftarrow$ Eq.\,(9) \hfill $\triangleright$ LDP
+    \STATE \textbf{return} $\tilde{g}_i^n, \tilde{g}_{C(n)}$
+\STATE \textbf{end function}
+
+\end{algorithmic}
+\end{algorithm}
+
+\end{frame}
+
+
+%-----------------------------------------------------
+\section{Datasets}
 % Slide 14
 \begin{frame}{Datasets we worked on (and in paper)}
   \begin{itemize}
@@ -274,17 +318,17 @@
 \end{frame}
 
 %-----------------------------------------------------
-\section{Baselines (years / sources)}
+\section{Baselines}
 
 % Slide 15
 \begin{frame}{Baseline models (and year / source as reported)}
 \small
 \begin{itemize}
-  \item \textbf{LightGCN} (He et al., SIGIR 2020): Centralized GNN-based recommender that simplifies GCNs by removing feature transformation and nonlinear activation, using neighborhood aggregation for collaborative filtering.
+  \item \textbf{LightGCN} (He et al., SIGIR 2020) [1]: Centralized GNN-based recommender that simplifies GCNs by removing feature transformation and nonlinear activation, using neighborhood aggregation for collaborative filtering.
 
-  \item \textbf{FedAvg} (McMahan et al., 2017): Standard federated learning algorithm that aggregates client models via weighted averaging, assuming IID data distribution across clients.
+  \item \textbf{FedAvg} (McMahan et al., 2017) [2]: Standard federated learning algorithm that aggregates client models via weighted averaging, assuming IID data distribution across clients.
 
-  \item \textbf{FedMF} (Chai et al., 2021): Federated matrix factorization framework that jointly learns item embeddings while keeping user embeddings local, using homomorphic encryption to protect gradient privacy.
+  \item \textbf{FedMF} (Chai et al., 2021) [3]: Federated matrix factorization framework that jointly learns item embeddings while keeping user embeddings local, using homomorphic encryption to protect gradient privacy.
 \end{itemize}
 \end{frame}
 
@@ -292,11 +336,11 @@
 \begin{frame}{Baseline models (and year / source as reported) (cont.)}
 \small
 \begin{itemize}
-  \item \textbf{FedGNN} (Wu et al.): Privacy-preserving federated recommendation method that applies GNNs on decentralized user–item graphs and introduces pseudo-interaction sampling to mitigate privacy leakage.
+  \item \textbf{FedGNN} (Wu et al.) [4]: Privacy-preserving federated recommendation method that applies GNNs on decentralized user–item graphs and introduces pseudo-interaction sampling to mitigate privacy leakage.
 
-  \item \textbf{PerFedRec} (Luo et al., 2022): Personalized federated GNN-based recommender that clusters users and adapts models locally to alleviate performance degradation caused by non-IID data.
+  \item \textbf{PerFedRec} (Luo et al., 2022) [5]: Personalized federated GNN-based recommender that clusters users and adapts models locally to alleviate performance degradation caused by non-IID data.
 
-  \item \textbf{FPFR} (Zhang et al.): Fair and personalized federated recommendation framework that introduces attention-based personalization and fairness-aware objectives during federated aggregation.
+  \item \textbf{FPFR} (Zhang et al.) [6]: Fair and personalized federated recommendation framework that introduces attention-based personalization and fairness-aware objectives during federated aggregation.
 \end{itemize}
 \end{frame}
 
@@ -313,7 +357,7 @@
 \end{frame}
 
 %-----------------------------------------------------
-\section{Performance summary (paper results)}
+\section{Performance summary}
 % Slide 17
 \begin{frame}{Performance summary (high-level)}
   \begin{itemize}
@@ -329,7 +373,6 @@
 \end{frame}
 
 %-----------------------------------------------------
-\section{Parameter sensitivity (brief)}
 % Slide 18
 \begin{frame}{Parameter sensitivity — main takeaways}
   \begin{itemize}
@@ -352,7 +395,6 @@
 %\end{frame}
 
 %-----------------------------------------------------
-\section{Future plans / improvements}
 % Slide 20
 \begin{frame}{Future plans / possible improvements}
   \begin{itemize}
@@ -364,7 +406,6 @@
 \end{frame}
 
 %-----------------------------------------------------
-\section{Conclusion}
 % Slide 21
 \begin{frame}{Conclusion}
   \begin{itemize}
@@ -375,13 +416,50 @@
 \end{frame}
 
 %-----------------------------------------------------
-\section{References}
 % Slide 22
 \begin{frame}{Reference (main paper)}
   S. Wang, Y. Zhou, X. Fan, J. Li, Z. Lei, and M. Gong, “Personalized Federated Contrastive Learning for Recommendation,” \emph{IEEE Trans. Comput. Social Syst.}, vol. 12, no. 5, Oct. 2025.\\[6pt]
 \end{frame}
 
+
+%-----------------------------------------------------
 % Slide 23
+\begin{frame}{References}
+\small
+\begin{thebibliography}{99}
+
+\bibitem{[1] lightgcn}
+X. He, K. Deng, X. Wang, Y. Li, Y. Zhang, and M. Wang, “LightGCN:
+Simplifying and powering graph convolution network for recommenda-
+tion,” in Proc. ACM Int. ACM SIGIR Conf. Res. Develop. Inf. Ret., 2020,
+pp. 639–648.
+
+\bibitem{fedavg}
+B. McMahan et al.,
+“Communication-Efficient Learning of Deep Networks from Decentralized Data,”
+\emph{AISTATS}, 2017.
+
+\bibitem{fedmf}
+D. Chai et al.,
+“Secure Federated Matrix Factorization,” 2021.
+
+\bibitem{fedgnn}
+C. Wu et al.,
+“Federated Graph Neural Network for Privacy-Preserving Recommendation.”
+
+\bibitem{perfedrec}
+X. Luo et al.,
+“Personalized Federated Recommendation,” 2022.
+
+\bibitem{fpfr}
+Y. Zhang et al.,
+“Fair and Personalized Federated Recommendation.”
+
+\end{thebibliography}
+\end{frame}
+
+
+% Slide 24
 \begin{frame}{Thanks / Questions}
   \centering
     Thank You!!
