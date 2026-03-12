@@ -266,16 +266,31 @@ def _load_ml1m(path: str):
     return rows
 
 
+# ══════════════════════════════════════════════════════════════════════════════
+#  DATASET-SPECIFIC LOADERS
+# ══════════════════════════════════════════════════════════════════════════════
+
+# UPDATED: FilmTrust parser now supports comma, tab, or space separated files
+# Reason: many FilmTrust distributions use "user,item,rating" instead of
+# the original "user item rating" format. Without this fix the loader
+# reads zero interactions and the dataset becomes empty.
+
+# UPDATED: generate increasing timestamp to allow chronological split
 def _load_filmtrust(path: str):
-    """ratings.txt: user_id SPACE item_id SPACE rating"""
     rows = []
+    t = 0
     with open(path) as f:
         for line in f:
-            p = line.strip().split()
-            if len(p) < 3: continue
-            uid, iid, rating = int(p[0]), int(p[1]), float(p[2])
+            line = line.strip().replace(',', ' ').replace('\t',' ')
+            p = line.split()
+            if len(p) < 3:
+                continue
+            uid = int(p[0])
+            iid = int(p[1])
+            rating = float(p[2])
             if rating > THRESHOLDS['filmtrust']:
-                rows.append((uid, iid, 0))
+                rows.append((uid, iid, t))
+                t += 1
     return rows
 
 
