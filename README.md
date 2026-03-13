@@ -1,6 +1,6 @@
 # FedPCL: Personalized Federated Contrastive Learning for Recommendation
 
-[![Paper](https://img.shields.io/badge/Paper-IEEE_TCSS-blue)](https://ieeexplore.ieee.org/document/10834524)
+[![Paper](https://img.shields.io/badge/Paper-IEEE_TCSS-blue)]([https://ieeexplore.ieee.org/document/10834524](https://www.researchgate.net/publication/387989972_Personalized_Federated_Contrastive_Learning_for_Recommendation))
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [cite_start]Official implementation of **FedPCL**, a novel federated recommendation framework based on Graph Neural Networks (GNNs) that simultaneously addresses **data sparsity** and **personalization**[cite: 10, 67].
