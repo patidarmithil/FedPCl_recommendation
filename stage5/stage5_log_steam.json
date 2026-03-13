@@ -1,0 +1,2772 @@
+{
+  "dataset": "steam",
+  "hparams": {
+    "embed_dim": 64,
+    "n_gnn_layers": 2,
+    "n_rounds": 400,
+    "clients_per_round": 128,
+    "local_epochs": 5,
+    "n_clusters": 5,
+    "mu1": 0.5,
+    "mu2": 0.5,
+    "cluster_every": 10,
+    "beta1": 0.1,
+    "lam": 1.0,
+    "tau": 0.2,
+    "drop_rate": 0.3,
+    "warmup_rounds": 20,
+    "max_neigh": 20,
+    "max_items_neigh": 10,
+    "clip_norm": 1.0,
+    "noise_scale": 0.01,
+    "robust_aggregation": false,
+    "trim_frac": 0.1,
+    "lr_item": 0.1,
+    "lr_user": 0.001,
+    "weight_decay": 1e-06,
+    "eval_every": 10,
+    "top_k": 10
+  },
+  "best_hr": 74.927,
+  "best_ndcg": 52.093,
+  "best_round": 390,
+  "privacy": {
+    "clip_norm": 1.0,
+    "noise_scale": 0.01,
+    "epsilon_per_round": 100.0,
+    "total_epsilon": 40000.0,
+    "n_rounds": 400
+  },
+  "log": [
+    {
+      "round": 1,
+      "loss": 0.5992,
+      "HR@10": 9.289,
+      "NDCG@10": 4.524,
+      "cl_active": false,
+      "cumulative_epsilon": 100.0
+    },
+    {
+      "round": 10,
+      "loss": 0.59174,
+      "HR@10": 10.514,
+      "NDCG@10": 5.169,
+      "cl_active": false,
+      "cumulative_epsilon": 1000.0
+    },
+    {
+      "round": 20,
+      "loss": 0.57672,
+      "HR@10": 11.978,
+      "NDCG@10": 5.867,
+      "cl_active": false,
+      "cumulative_epsilon": 2000.0
+    },
+    {
+      "round": 30,
+      "loss": 0.46056,
+      "HR@10": 13.788,
+      "NDCG@10": 6.842,
+      "cl_active": true,
+      "cumulative_epsilon": 3000.0
+    },
+    {
+      "round": 40,
+      "loss": 0.45618,
+      "HR@10": 15.997,
+      "NDCG@10": 8.268,
+      "cl_active": true,
+      "cumulative_epsilon": 4000.0
+    },
+    {
+      "round": 50,
+      "loss": 0.42141,
+      "HR@10": 18.738,
+      "NDCG@10": 10.026,
+      "cl_active": true,
+      "cumulative_epsilon": 5000.0
+    },
+    {
+      "round": 60,
+      "loss": 0.43729,
+      "HR@10": 21.267,
+      "NDCG@10": 11.709,
+      "cl_active": true,
+      "cumulative_epsilon": 6000.0
+    },
+    {
+      "round": 70,
+      "loss": 0.41693,
+      "HR@10": 23.529,
+      "NDCG@10": 13.686,
+      "cl_active": true,
+      "cumulative_epsilon": 7000.0
+    },
+    {
+      "round": 80,
+      "loss": 0.40008,
+      "HR@10": 26.324,
+      "NDCG@10": 16.032,
+      "cl_active": true,
+      "cumulative_epsilon": 8000.0
+    },
+    {
+      "round": 90,
+      "loss": 0.3854,
+      "HR@10": 28.507,
+      "NDCG@10": 18.075,
+      "cl_active": true,
+      "cumulative_epsilon": 9000.0
+    },
+    {
+      "round": 100,
+      "loss": 0.36974,
+      "HR@10": 31.195,
+      "NDCG@10": 19.802,
+      "cl_active": true,
+      "cumulative_epsilon": 10000.0
+    },
+    {
+      "round": 110,
+      "loss": 0.37912,
+      "HR@10": 34.043,
+      "NDCG@10": 21.884,
+      "cl_active": true,
+      "cumulative_epsilon": 11000.0
+    },
+    {
+      "round": 120,
+      "loss": 0.34555,
+      "HR@10": 36.332,
+      "NDCG@10": 23.957,
+      "cl_active": true,
+      "cumulative_epsilon": 12000.0
+    },
+    {
+      "round": 130,
+      "loss": 0.35419,
+      "HR@10": 39.739,
+      "NDCG@10": 26.449,
+      "cl_active": true,
+      "cumulative_epsilon": 13000.0
+    },
+    {
+      "round": 140,
+      "loss": 0.31209,
+      "HR@10": 43.013,
+      "NDCG@10": 28.914,
+      "cl_active": true,
+      "cumulative_epsilon": 14000.0
+    },
+    {
+      "round": 150,
+      "loss": 0.3285,
+      "HR@10": 46.074,
+      "NDCG@10": 30.958,
+      "cl_active": true,
+      "cumulative_epsilon": 15000.0
+    },
+    {
+      "round": 160,
+      "loss": 0.31473,
+      "HR@10": 48.709,
+      "NDCG@10": 33.309,
+      "cl_active": true,
+      "cumulative_epsilon": 16000.0
+    },
+    {
+      "round": 170,
+      "loss": 0.29173,
+      "HR@10": 51.424,
+      "NDCG@10": 35.519,
+      "cl_active": true,
+      "cumulative_epsilon": 17000.0
+    },
+    {
+      "round": 180,
+      "loss": 0.29173,
+      "HR@10": 53.633,
+      "NDCG@10": 37.341,
+      "cl_active": true,
+      "cumulative_epsilon": 18000.0
+    },
+    {
+      "round": 190,
+      "loss": 0.25098,
+      "HR@10": 55.763,
+      "NDCG@10": 38.884,
+      "cl_active": true,
+      "cumulative_epsilon": 19000.0
+    },
+    {
+      "round": 200,
+      "loss": 0.23087,
+      "HR@10": 58.531,
+      "NDCG@10": 40.805,
+      "cl_active": true,
+      "cumulative_epsilon": 20000.0
+    },
+    {
+      "round": 210,
+      "loss": 0.22725,
+      "HR@10": 60.314,
+      "NDCG@10": 42.066,
+      "cl_active": true,
+      "cumulative_epsilon": 21000.0
+    },
+    {
+      "round": 220,
+      "loss": 0.23578,
+      "HR@10": 61.645,
+      "NDCG@10": 43.275,
+      "cl_active": true,
+      "cumulative_epsilon": 22000.0
+    },
+    {
+      "round": 230,
+      "loss": 0.1917,
+      "HR@10": 63.721,
+      "NDCG@10": 44.668,
+      "cl_active": true,
+      "cumulative_epsilon": 23000.0
+    },
+    {
+      "round": 240,
+      "loss": 0.19399,
+      "HR@10": 65.478,
+      "NDCG@10": 45.756,
+      "cl_active": true,
+      "cumulative_epsilon": 24000.0
+    },
+    {
+      "round": 250,
+      "loss": 0.17471,
+      "HR@10": 66.569,
+      "NDCG@10": 46.571,
+      "cl_active": true,
+      "cumulative_epsilon": 25000.0
+    },
+    {
+      "round": 260,
+      "loss": 0.15131,
+      "HR@10": 67.447,
+      "NDCG@10": 47.473,
+      "cl_active": true,
+      "cumulative_epsilon": 26000.0
+    },
+    {
+      "round": 270,
+      "loss": 0.14825,
+      "HR@10": 68.432,
+      "NDCG@10": 48.035,
+      "cl_active": true,
+      "cumulative_epsilon": 27000.0
+    },
+    {
+      "round": 280,
+      "loss": 0.14762,
+      "HR@10": 69.577,
+      "NDCG@10": 48.79,
+      "cl_active": true,
+      "cumulative_epsilon": 28000.0
+    },
+    {
+      "round": 290,
+      "loss": 0.14737,
+      "HR@10": 70.269,
+      "NDCG@10": 49.257,
+      "cl_active": true,
+      "cumulative_epsilon": 29000.0
+    },
+    {
+      "round": 300,
+      "loss": 0.14084,
+      "HR@10": 71.147,
+      "NDCG@10": 49.689,
+      "cl_active": true,
+      "cumulative_epsilon": 30000.0
+    },
+    {
+      "round": 310,
+      "loss": 0.13308,
+      "HR@10": 71.866,
+      "NDCG@10": 50.075,
+      "cl_active": true,
+      "cumulative_epsilon": 31000.0
+    },
+    {
+      "round": 320,
+      "loss": 0.12642,
+      "HR@10": 72.372,
+      "NDCG@10": 50.476,
+      "cl_active": true,
+      "cumulative_epsilon": 32000.0
+    },
+    {
+      "round": 330,
+      "loss": 0.11952,
+      "HR@10": 72.611,
+      "NDCG@10": 50.734,
+      "cl_active": true,
+      "cumulative_epsilon": 33000.0
+    },
+    {
+      "round": 340,
+      "loss": 0.11946,
+      "HR@10": 72.824,
+      "NDCG@10": 50.899,
+      "cl_active": true,
+      "cumulative_epsilon": 34000.0
+    },
+    {
+      "round": 350,
+      "loss": 0.08316,
+      "HR@10": 73.596,
+      "NDCG@10": 51.41,
+      "cl_active": true,
+      "cumulative_epsilon": 35000.0
+    },
+    {
+      "round": 360,
+      "loss": 0.10422,
+      "HR@10": 73.702,
+      "NDCG@10": 51.4,
+      "cl_active": true,
+      "cumulative_epsilon": 36000.0
+    },
+    {
+      "round": 370,
+      "loss": 0.08358,
+      "HR@10": 74.102,
+      "NDCG@10": 51.702,
+      "cl_active": true,
+      "cumulative_epsilon": 37000.0
+    },
+    {
+      "round": 380,
+      "loss": 0.09047,
+      "HR@10": 74.634,
+      "NDCG@10": 51.855,
+      "cl_active": true,
+      "cumulative_epsilon": 38000.0
+    },
+    {
+      "round": 390,
+      "loss": 0.0641,
+      "HR@10": 74.927,
+      "NDCG@10": 52.093,
+      "cl_active": true,
+      "cumulative_epsilon": 39000.0
+    },
+    {
+      "round": 400,
+      "loss": 0.0748,
+      "HR@10": 74.874,
+      "NDCG@10": 52.278,
+      "cl_active": true,
+      "cumulative_epsilon": 40000.0
+    }
+  ],
+  "privacy_log": [
+    {
+      "round": 1,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 2,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 3,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 4,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 5,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 6,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 7,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 8,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 9,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 10,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 1000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 11,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 1100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 12,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 1200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 13,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 1300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 14,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 1400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 15,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 1500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 16,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 1600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 17,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 1700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 18,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 1800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 19,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 1900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 20,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 2000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 21,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 2100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 22,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 2200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 23,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 2300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 24,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 2400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 25,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 2500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 26,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 2600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 27,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 2700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 28,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 2800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 29,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 2900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 30,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 3000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 31,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 3100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 32,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 3200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 33,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 3300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 34,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 3400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 35,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 3500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 36,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 3600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 37,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 3700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 38,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 3800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 39,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 3900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 40,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 4000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 41,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 4100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 42,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 4200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 43,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 4300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 44,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 4400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 45,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 4500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 46,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 4600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 47,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 4700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 48,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 4800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 49,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 4900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 50,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 5000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 51,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 5100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 52,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 5200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 53,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 5300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 54,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 5400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 55,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 5500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 56,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 5600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 57,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 5700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 58,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 5800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 59,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 5900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 60,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 6000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 61,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 6100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 62,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 6200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 63,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 6300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 64,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 6400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 65,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 6500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 66,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 6600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 67,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 6700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 68,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 6800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 69,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 6900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 70,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 7000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 71,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 7100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 72,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 7200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 73,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 7300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 74,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 7400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 75,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 7500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 76,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 7600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 77,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 7700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 78,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 7800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 79,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 7900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 80,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 8000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 81,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 8100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 82,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 8200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 83,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 8300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 84,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 8400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 85,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 8500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 86,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 8600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 87,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 8700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 88,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 8800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 89,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 8900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 90,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 9000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 91,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 9100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 92,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 9200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 93,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 9300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 94,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 9400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 95,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 9500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 96,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 9600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 97,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 9700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 98,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 9800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 99,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 9900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 100,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 10000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 101,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 10100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 102,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 10200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 103,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 10300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 104,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 10400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 105,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 10500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 106,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 10600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 107,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 10700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 108,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 10800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 109,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 10900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 110,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 11000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 111,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 11100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 112,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 11200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 113,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 11300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 114,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 11400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 115,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 11500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 116,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 11600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 117,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 11700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 118,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 11800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 119,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 11900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 120,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 12000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 121,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 12100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 122,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 12200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 123,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 12300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 124,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 12400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 125,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 12500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 126,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 12600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 127,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 12700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 128,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 12800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 129,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 12900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 130,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 13000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 131,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 13100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 132,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 13200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 133,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 13300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 134,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 13400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 135,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 13500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 136,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 13600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 137,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 13700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 138,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 13800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 139,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 13900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 140,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 14000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 141,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 14100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 142,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 14200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 143,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 14300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 144,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 14400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 145,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 14500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 146,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 14600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 147,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 14700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 148,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 14800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 149,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 14900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 150,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 15000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 151,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 15100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 152,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 15200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 153,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 15300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 154,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 15400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 155,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 15500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 156,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 15600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 157,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 15700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 158,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 15800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 159,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 15900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 160,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 16000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 161,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 16100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 162,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 16200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 163,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 16300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 164,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 16400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 165,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 16500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 166,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 16600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 167,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 16700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 168,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 16800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 169,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 16900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 170,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 17000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 171,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 17100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 172,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 17200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 173,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 17300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 174,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 17400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 175,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 17500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 176,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 17600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 177,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 17700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 178,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 17800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 179,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 17900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 180,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 18000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 181,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 18100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 182,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 18200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 183,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 18300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 184,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 18400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 185,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 18500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 186,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 18600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 187,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 18700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 188,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 18800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 189,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 18900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 190,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 19000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 191,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 19100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 192,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 19200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 193,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 19300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 194,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 19400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 195,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 19500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 196,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 19600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 197,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 19700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 198,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 19800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 199,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 19900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 200,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 20000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 201,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 20100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 202,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 20200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 203,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 20300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 204,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 20400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 205,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 20500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 206,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 20600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 207,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 20700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 208,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 20800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 209,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 20900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 210,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 21000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 211,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 21100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 212,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 21200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 213,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 21300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 214,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 21400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 215,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 21500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 216,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 21600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 217,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 21700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 218,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 21800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 219,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 21900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 220,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 22000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 221,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 22100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 222,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 22200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 223,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 22300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 224,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 22400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 225,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 22500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 226,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 22600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 227,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 22700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 228,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 22800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 229,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 22900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 230,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 23000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 231,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 23100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 232,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 23200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 233,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 23300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 234,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 23400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 235,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 23500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 236,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 23600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 237,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 23700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 238,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 23800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 239,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 23900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 240,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 24000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 241,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 24100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 242,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 24200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 243,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 24300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 244,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 24400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 245,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 24500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 246,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 24600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 247,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 24700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 248,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 24800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 249,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 24900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 250,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 25000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 251,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 25100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 252,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 25200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 253,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 25300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 254,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 25400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 255,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 25500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 256,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 25600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 257,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 25700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 258,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 25800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 259,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 25900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 260,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 26000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 261,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 26100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 262,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 26200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 263,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 26300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 264,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 26400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 265,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 26500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 266,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 26600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 267,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 26700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 268,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 26800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 269,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 26900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 270,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 27000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 271,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 27100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 272,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 27200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 273,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 27300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 274,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 27400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 275,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 27500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 276,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 27600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 277,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 27700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 278,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 27800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 279,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 27900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 280,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 28000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 281,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 28100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 282,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 28200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 283,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 28300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 284,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 28400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 285,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 28500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 286,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 28600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 287,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 28700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 288,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 28800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 289,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 28900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 290,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 29000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 291,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 29100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 292,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 29200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 293,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 29300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 294,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 29400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 295,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 29500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 296,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 29600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 297,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 29700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 298,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 29800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 299,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 29900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 300,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 30000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 301,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 30100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 302,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 30200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 303,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 30300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 304,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 30400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 305,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 30500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 306,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 30600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 307,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 30700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 308,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 30800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 309,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 30900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 310,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 31000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 311,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 31100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 312,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 31200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 313,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 31300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 314,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 31400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 315,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 31500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 316,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 31600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 317,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 31700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 318,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 31800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 319,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 31900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 320,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 32000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 321,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 32100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 322,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 32200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 323,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 32300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 324,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 32400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 325,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 32500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 326,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 32600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 327,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 32700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 328,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 32800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 329,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 32900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 330,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 33000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 331,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 33100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 332,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 33200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 333,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 33300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 334,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 33400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 335,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 33500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 336,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 33600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 337,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 33700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 338,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 33800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 339,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 33900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 340,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 34000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 341,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 34100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 342,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 34200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 343,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 34300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 344,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 34400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 345,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 34500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 346,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 34600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 347,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 34700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 348,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 34800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 349,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 34900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 350,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 35000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 351,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 35100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 352,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 35200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 353,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 35300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 354,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 35400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 355,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 35500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 356,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 35600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 357,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 35700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 358,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 35800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 359,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 35900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 360,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 36000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 361,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 36100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 362,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 36200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 363,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 36300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 364,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 36400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 365,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 36500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 366,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 36600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 367,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 36700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 368,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 36800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 369,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 36900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 370,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 37000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 371,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 37100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 372,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 37200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 373,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 37300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 374,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 37400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 375,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 37500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 376,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 37600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 377,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 37700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 378,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 37800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 379,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 37900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 380,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 38000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 381,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 38100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 382,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 38200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 383,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 38300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 384,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 38400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 385,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 38500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 386,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 38600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 387,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 38700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 388,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 38800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 389,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 38900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 390,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 39000.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 391,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 39100.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 392,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 39200.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 393,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 39300.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 394,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 39400.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 395,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 39500.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 396,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 39600.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 397,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 39700.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 398,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 39800.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 399,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 39900.0,
+      "n_uploaders": 128
+    },
+    {
+      "round": 400,
+      "epsilon_spent": 100.0,
+      "cumulative_epsilon": 40000.0,
+      "n_uploaders": 128
+    }
+  ]
+}
