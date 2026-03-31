@@ -1,0 +1,102 @@
+Device : cpu
+Loading data …
+Building collaborative item features [O] …
+Users=943  Items=1682  Train=98114  Val=943  Test=943
+User-feat=23  Item-feat=42 (19 genre + 23 collab)
+Global-only item keys [P]: 11 (all ih.* parameters excluded from personalization mix)
+
+======================================================================
+PerFedRec v6 | rounds=400 | K=10 | epochs=3 | lr=0.01
+v3/v4 fixes : [A] correct mix  [B] local persist  [C] GNN repr  [F-N] stability
+v6 new [O]  : collab item feat  (19→42 dims, static)
+v6 new [P]  : global item head  (all ih.* = global; users personalise via uh.* only)
+======================================================================
+
+Rd   1 | HR@10=0.2291  NDCG@10=0.1133 ← best
+
+Rd  10 | HR@10=0.2195  NDCG@10=0.1015
+
+Rd  20 | HR@10=0.3510  NDCG@10=0.1923 ← best
+
+Rd  30 | HR@10=0.3722  NDCG@10=0.2046 ← best
+
+Rd  40 | HR@10=0.3796  NDCG@10=0.2043 ← best
+
+Rd  50 | HR@10=0.3775  NDCG@10=0.2071
+
+Rd  60 | HR@10=0.3945  NDCG@10=0.2127 ← best
+
+Rd  70 | HR@10=0.3977  NDCG@10=0.2107 ← best
+
+Rd  80 | HR@10=0.4104  NDCG@10=0.2188 ← best
+
+Rd  90 | HR@10=0.3860  NDCG@10=0.2047
+
+Rd 100 | HR@10=0.3977  NDCG@10=0.2141
+
+Rd 110 | HR@10=0.3828  NDCG@10=0.2027
+
+Rd 120 | HR@10=0.3987  NDCG@10=0.2147
+
+Rd 130 | HR@10=0.3722  NDCG@10=0.2066
+
+Rd 140 | HR@10=0.3701  NDCG@10=0.2033
+
+Rd 150 | HR@10=0.3881  NDCG@10=0.2103
+
+Rd 160 | HR@10=0.3584  NDCG@10=0.1963
+
+Rd 170 | HR@10=0.3659  NDCG@10=0.1983
+
+Rd 180 | HR@10=0.3934  NDCG@10=0.2100
+
+Rd 190 | HR@10=0.3998  NDCG@10=0.2160
+
+Rd 200 | HR@10=0.3945  NDCG@10=0.2119
+
+Rd 210 | HR@10=0.3945  NDCG@10=0.2167
+
+Rd 220 | HR@10=0.3945  NDCG@10=0.2147
+
+Rd 230 | HR@10=0.4104  NDCG@10=0.2159
+
+Rd 240 | HR@10=0.3669  NDCG@10=0.2025
+
+Rd 250 | HR@10=0.4062  NDCG@10=0.2173
+
+Rd 260 | HR@10=0.3860  NDCG@10=0.2072
+
+Rd 270 | HR@10=0.4104  NDCG@10=0.2198
+
+Rd 280 | HR@10=0.3775  NDCG@10=0.2031
+
+Rd 290 | HR@10=0.3881  NDCG@10=0.2076
+
+Rd 300 | HR@10=0.4125  NDCG@10=0.2179 ← best
+
+Rd 310 | HR@10=0.3913  NDCG@10=0.2119
+
+Rd 320 | HR@10=0.3775  NDCG@10=0.2040
+
+Rd 330 | HR@10=0.4051  NDCG@10=0.2116
+
+Rd 340 | HR@10=0.3913  NDCG@10=0.2061
+
+Rd 350 | HR@10=0.3987  NDCG@10=0.2085
+
+Rd 360 | HR@10=0.4136  NDCG@10=0.2165 ← best
+
+Rd 370 | HR@10=0.3606  NDCG@10=0.1959
+
+Rd 380 | HR@10=0.3775  NDCG@10=0.2038
+
+Rd 390 | HR@10=0.3934  NDCG@10=0.2114
+
+Rd 400 | HR@10=0.3987  NDCG@10=0.2153
+
+======================================================================
+Test evaluation (best checkpoint) …
+
+  HR@10   = 0.3765   (paper target: ~0.6119)
+  NDCG@10 = 0.2016   (paper target: ~0.4409)
+======================================================================
