@@ -1,0 +1,6 @@
+{
+  "dataset": "ml100k",
+  "round": 400,
+  "n_items": 1682,
+  "embed_dim": 64
+}

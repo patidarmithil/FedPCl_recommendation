@@ -1,0 +1,6 @@
+{
+  "dataset": "amazon",
+  "round": 400,
+  "n_items": 1954,
+  "embed_dim": 64
+}
