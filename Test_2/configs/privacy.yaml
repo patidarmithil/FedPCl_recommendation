@@ -1,7 +1,0 @@
-privacy:
-  clip_norm: 1.0          # σ in Eq.(9)
-  noise_scale: 0.01       # λ in Laplace(0, λ)
-  mechanism: "laplace"
-
-  accountant:
-    enabled: false
