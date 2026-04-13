@@ -1,6 +1,6 @@
 # Result Comparision
 
-## Fed-PCL-
+## FedPCL-
 
 | Dataset | Our HR@10 | Paper HR@10 | Gap | Our NDCG@10 | Paper NDCG@10 | Gap | Status |
 |---|---|---|---|---|---|---|---|
