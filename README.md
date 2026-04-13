@@ -1,97 +1,240 @@
 # FedPCL: Personalized Federated Contrastive Learning for Recommendation
 
-
-[![Paper](https://img.shields.io/badge/Paper-IEEE_TCSS-blue)](https://ieeexplore.ieee.org/document/10834524)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-[cite_start]Official implementation of **FedPCL**, a novel federated recommendation framework based on Graph Neural Networks (GNNs) that simultaneously addresses **data sparsity** and **personalization**[cite: 10, 67].
-
-
-
-## 📌 Overview
-
-[cite_start]Traditional centralized recommendation systems pose significant privacy concerns and face strict regulations like GDPR[cite: 6, 35, 36]. While Federated Learning (FL) offers a privacy-preserving alternative, it faces two major challenges in recommendation scenarios:
-1.  [cite_start]**Data Sparsity:** Individual user data is often insufficient for models to learn reliable representations[cite: 8, 58, 60].
-2.  [cite_start]**Data Heterogeneity (Non-IID):** Varying user preferences (non-IID data) make a single global aggregated model suboptimal[cite: 9, 52, 54].
-
-[cite_start]**FedPCL** solves these by introducing a personalized federated GNN framework that extracts potential information by mining relationships between nodes[cite: 10, 66, 67, 193].
-
-## 🚀 Key Features
-
-* [cite_start]**Structural Neighbor Contrastive Learning:** Maximizes similarity between nodes and their high-order structural neighbors (k-hop neighbors) to enhance embedding quality and mitigate data sparsity[cite: 11, 13, 69, 76, 226].
-* [cite_start]**Multicenter Personalized Aggregation:** Groups similar users into clusters using K-means on the server side[cite: 14, 70, 71, 298].
-* **Personalized Dual-Model:** Each client combines a cluster-level model with a global model to obtain a personalized local model: 
-    [cite_start]$$h_{u}^{t} = \mu_{1}h_{C(u)}^{t} + \mu_{2}h_{global}^{t}$$[cite: 15, 71, 280, 282].
-* [cite_start]**Local Differential Privacy (LDP):** Encrypts gradients with Laplacian noise before uploading to the server to prevent privacy risks like rating inference[cite: 206, 285, 286, 289, 291].
-
-
-
-## 📊 Experimental Results
-
-[cite_start]FedPCL was evaluated on five real-world datasets and consistently outperformed competitive baselines like FedAvg, FedMF, and FedGNN[cite: 16, 78, 389, 441].
-
-| Dataset | HR@10 (FedPCL) | NDCG@10 (FedPCL) | Improv. (HR) |
-| :--- | :--- | :--- | :--- |
-| **ML-1M** | 62.86% | 44.12% | 1.65% |
-| **ML-100k** | 63.81% | 45.03% | 1.95% |
-| **Steam** | 80.36% | 65.55% | 2.46% |
-| **FilmTrust** | 16.81% | 8.61% | 7.34% |
-| **Amazon-Elec** | 34.04% | 22.93% | 3.91% |
-
-[cite_start]*Note: Improvements are relative to the second-best federated results[cite: 413, 415, 441, 442].*
-
-## 🛠️ Implementation Details
-
-* [cite_start]**Backbone Model:** LightGCN[cite: 420, 421].
-* [cite_start]**Optimization:** Adam optimizer with BPR (Bayesian Personalized Ranking) loss[cite: 187, 422, 429].
-* [cite_start]**Default Hyperparameters:** * Learning rate $\eta$: 0.1[cite: 430].
-    * [cite_start]Temperature $\tau$: 0.3[cite: 430].
-    * [cite_start]Weight $\mu_{1}, \mu_{2}$: 0.5[cite: 431].
-    * [cite_start]Number of clusters $K$: 5[cite: 431].
-    * [cite_start]Embedding dimensions: 64[cite: 431].
-
-## ⚙️ Project Structure
-
-```text
-├── data/               # Preprocessing scripts for ML-1M, Steam, etc.
-├── models/
-│   ├── gnn.py          # GNN architecture (LightGCN)
-│   ├── fed_pcl.py      # Core FedPCL logic (Contrastive & Personalized modules)
-├── utils/
-│   ├── ldp.py          # Local Differential Privacy implementation
-│   ├── clustering.py   # Server-side K-means clustering
-├── main.py             # Training entry point
-└── requirements.txt
-```
-
-## 🚧 Current Progress
-
-We are actively working on the implementation of this research paper. Our current focus includes:
-
-* [cite_start]**Framework Setup:** Initializing the federated environment consisting of a trusted central server and $N$ distributed clients[cite: 194]. [cite_start]The server coordinates training and aggregates gradients, while each client maintains a private local subnetwork $\mathcal{G}_{i}$[cite: 195, 196].
-* [cite_start]**GNN Integration:** Implementing **LightGCN** as the backbone model[cite: 91, 421]. [cite_start]This involves coding the linear propagation stage to aggregate $k$-hop neighbor information and the update function to form final node representations[cite: 92, 178, 179].
-
-* **Module Development:**
-    * [cite_start]**Structural Contrastive Learning:** Coding the contrastive objective (InfoNCE) to minimize the distance between a node's representation and its structural (homogeneous) neighbors found in even-numbered GNN layers[cite: 227, 228, 247].
-    * [cite_start]**Multicenter Aggregation:** Developing the server-side logic to group similar users into $K$ clusters using K-means based on their embeddings to mitigate the impact of non-IID data[cite: 274, 298].
-
-    * [cite_start]**Local Differential Privacy (LDP):** Implementing the privacy module that clips gradients and adds Laplacian noise to prevent the inference of user rating information[cite: 283, 285, 289, 291].
-* [cite_start]**Dataset Preprocessing:** Converting interaction records from the **ML-1M, ML-100k, Steam, FilmTrust,** and **Amazon-Electronic** datasets into implicit feedback formats ($r_{uv}=1$ for interactions, $r_{uv}=0$ otherwise)[cite: 390, 399]. [cite_start]We are adopting the leave-one-out method for evaluation[cite: 400].
+> Official project implementation and experiments for **FedPCL**  
+> Paper: *Personalized Federated Contrastive Learning for Recommendation*  
+> IEEE link: [https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10839577](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10839577)
 
 ---
 
-## 📝 Citation
+## 📌 Overview
 
-If you use this code or method in your research, please cite:
+Modern recommendation systems face two major issues in federated settings:
+
+1. **Data Sparsity**  
+   Each client has very limited local interactions, so local graph learning is weak.
+
+2. **Data Heterogeneity (Non-IID)**  
+   User preferences differ significantly across clients, making a single global model suboptimal.
+
+**FedPCL** addresses both with a 3-part design:
+
+- **Structural Contrastive Learning** (client-side) to improve representation quality in sparse local graphs.
+- **Multi-center Personalized Aggregation** (server-side clustering) to better handle non-IID users.
+- **Local Differential Privacy (LDP)** on uploaded updates to protect user information.
+
+---
+
+## ✨ Core Contributions Implemented
+
+- ✅ **LightGCN-based federated recommendation**
+- ✅ **Stage-wise pipeline** from baseline FedAvg to full FedPCL
+- ✅ **2-hop neighborhood expansion** for richer local subgraphs
+- ✅ **User + item structural contrastive objectives**
+- ✅ **K-means based personalized cluster aggregation**
+- ✅ **Client-side LDP** with clipping + Laplace noise
+- ✅ **Automatic logging, metrics tracking, and embedding snapshot saving**
+
+---
+
+## 🧠 Method Summary
+
+### 1) Structural Contrastive Learning
+
+For each client, embeddings are trained with BPR plus contrastive losses:
+
+- User-side contrastive objective (anchor vs structural neighbors)
+- Item-side contrastive objective (two stochastic views)
+
+This helps compensate for sparse local supervision.
+
+### 2) Personalized Federated Aggregation
+
+The server maintains:
+
+- One **global** item embedding model
+- **K cluster-specific** models
+
+Each client receives personalized item embeddings as a weighted combination of cluster + global representations.
+
+### 3) Local Differential Privacy (Stage 5)
+
+Before upload, each client applies:
+
+\[
+\tilde{g} = \text{clip}(g,\sigma) + \text{Laplace}(0,\lambda)
+\]
+
+with privacy budget:
+
+\[
+\varepsilon = \sigma / \lambda
+\]
+
+---
+
+## 🧱 Repository Structure
+
+```text
+.
+├── FedPCL_stage5h/           # Most complete staged implementation (recommended)
+│   ├── train_stage3.py
+│   ├── train_stage4.py
+│   ├── train_stage5.py
+│   ├── federated_core_stage3.py
+│   ├── federated_core_stage4.py
+│   ├── federated_core_stage5.py
+│   ├── client_stage3.py
+│   ├── client_stage4.py
+│   ├── client_stage5.py
+│   ├── server_stage3.py
+│   ├── server_stage4.py
+│   ├── server_stage5.py
+│   ├── contrastive.py
+│   ├── ldp.py
+│   ├── data_loader.py
+│   ├── show_results.py
+│   ├── run_multiseed.py
+│   └── README.md
+│
+├── FedPCL/                   # Earlier/parallel implementation
+├── FedPCL_stage5/            # Alternate stage implementation
+├── Fedavg/                   # FedAvg baseline implementation
+├── PerFedRec/                # Additional baseline/experiment
+├── Datasets/                 # Raw datasets (ml-100k, ml-1m, steam, amazon, etc.)
+└── Presentation(Latex-Code)  # Report/presentation assets
+```
+
+## 🚀 Quick Start (Recommended: FedPCL_stage5h)
+
+### 1) Environment
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install torch numpy scipy scikit-learn matplotlib
+```
+
+*If you use GPU, install the correct PyTorch build for your CUDA version.*
+
+### 2) Move into implementation folder
+```bash
+cd FedPCL_stage5h
+```
+
+### 3) Run Stage 5 (Full FedPCL + LDP)
+
+**ML-100K**
+```bash
+python3 train_stage5.py \
+  --dataset ml100k --data_path u.data \
+  --n_rounds 400 --local_epochs 10 \
+  --tau 0.2 --beta1 0.1 --drop_rate 0.3 --max_neigh 20
+```
+
+**ML-1M**
+```bash
+python3 train_stage5.py \
+  --dataset ml1m --data_path ratings.dat \
+  --n_rounds 800 --clients_per_round 200 --local_epochs 10 \
+  --tau 0.2 --beta1 0.1 --drop_rate 0.3 --max_neigh 20
+```
+
+**Steam**
+```bash
+python3 train_stage5.py \
+  --dataset steam --data_path steam_processed.json \
+  --n_rounds 400 --local_epochs 10 \
+  --tau 0.2 --beta1 0.1 --drop_rate 0.1 --max_neigh 10
+```
+
+**Amazon**
+```bash
+python3 train_stage5.py \
+  --dataset amazon --data_path amazon_processed.json \
+  --n_rounds 400 --local_epochs 10 \
+  --tau 0.2 --beta1 0.1 --drop_rate 0.1 --max_neigh 10
+```
+
+### 🧪 Ablations / Comparisons
+
+**Stage 4 (No LDP)**
+```bash
+python3 train_stage4.py \
+  --dataset ml100k --data_path u.data \
+  --n_rounds 400 --local_epochs 10 \
+  --tau 0.2 --beta1 0.1 --drop_rate 0.3 --max_neigh 20
+```
+
+**Disable LDP in Stage 5**
+```bash
+python3 train_stage5.py \
+  --dataset steam --data_path steam_processed.json \
+  --no_ldp
+```
+
+**Multi-seed Reproducibility**
+```bash
+python3 run_multiseed.py \
+  --stage 5 --dataset ml100k --data_path u.data \
+  --seeds 42 123 456 789 1234 \
+  --n_rounds 400 --local_epochs 10 \
+  --tau 0.2 --beta1 0.1 --drop_rate 0.3 --max_neigh 20
+```
+
+## 📊 Evaluation Protocol
+
+- Leave-one-out evaluation per user
+- 100 sampled negatives per test user
+- **Ranking Metrics**: HR@10, NDCG@10
+
+## ⚙️ Key Hyperparameters (Typical)
+
+| Parameter                | Value          |
+|--------------------------|----------------|
+| Embedding dim (d)        | 64             |
+| GNN layers (K_gnn)       | 2              |
+| Rounds (T)               | 400 (or 800 for ML-1M) |
+| Clients / round          | 128            |
+| Local epochs (E)         | 10             |
+| Clusters (K)             | 5              |
+| mu1, mu2                 | 0.5, 0.5       |
+| Contrastive temperature (tau) | 0.2–0.3 |
+| Contrastive weight (beta1) | 0.1          |
+| Item CL weight (lam)     | 1.0            |
+| LDP clip (sigma)         | 0.1            |
+| Laplace scale (lambda_laplace) | 0.001    |
+
+## 🗂️ Logs and Outputs
+
+Typical generated artifacts:
+
+- `stage5_log_<dataset>.json` — round-wise metrics and summary
+- `emb_<dataset>_round0001.npy` — early embeddings
+- `emb_<dataset>_round0400.npy` — final embeddings
+- `*_meta.json` — metadata for embedding snapshots
+
+**View Results**
+```bash
+python3 show_results.py --file stage5_log_ml100k.json
+```
+
+## 🛡️ Privacy Note
+
+LDP is applied client-side before upload to server:
+
+- Uploaded item deltas are privatized
+- Uploaded user embeddings (for clustering) are privatized
+- Raw user interaction data never leaves clients
+
+## 📚 Citation
+
+If you use this project, please cite the FedPCL paper:
 
 ```bibtex
 @article{wang2025personalized,
-  title={Personalized Federated Contrastive Learning for Recommendation},
-  author={Wang, Shanfeng and Zhou, Yuxi and Fan, Xiaolong and Li, Jianzhao and Lei, Zexuan and Gong, Maoguo},
-  journal={IEEE Transactions on Computational Social Systems},
-  volume={12},
-  number={5},
-  pages={2986-2998},
-  year={2025},
-  publisher={IEEE}
+  title   = {Personalized Federated Contrastive Learning for Recommendation},
+  author  = {Wang, Shanfeng and Zhou, Yuxi and Fan, Xiaolong and Li, Jianzhao and Lei, Zexuan and Gong, Maoguo},
+  journal = {IEEE Transactions on Computational Social Systems},
+  year    = {2025}
 }
+```
