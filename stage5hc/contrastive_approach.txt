@@ -1,0 +1,77 @@
+B. Contrastive Learning
+Contrastive learning, as a kind of self-supervised learning
+methods, has been widely applied in various fields such as computer vision (CV) [31], natural language processing (NLP) [32],
+and graph learning [33]. The basic idea of contrastive learning
+is to select appropriate positive and negative pairs, maximizing the agreement between positive pairs and minimizing the
+agreement between negative pairs [34]. Zhang et al. proposed
+an adaptive-margin-enhanced contrastive learning technique to
+learn the global model, thereby enhancing interclass separability [35]. In the field of recommender systems, Hao et al. treated
+the structural and semantic information of user–item graphs as
+two contrastive views for recommendation and then proposed a
+contrastive learning model for graph collaborative filtering [36].
+It generates adaptive contrastive views through a metaoptimized
+two-step training strategy and enhances the recommendation
+performance of the model. Yu et al. created contrastive views by
+adding uniform noise to the embedding space [24]. To reduce
+computational complexity, this method replaces the final layer
+contrast with cross-layer contrast. Lin et al. [37] presented a
+prototype-contrastive objective to capture contextual information. Specifically, for each item or user, the positive sample
+is the prototype of the cluster to which it belongs, while the
+negative sample is the prototype of other clusters. The prototype represents the cluster center and the prototype-contrastive
+objective is learned using the expectation–maximization (EM)
+algorithm. Additionally, this algorithm applies cross-layer contrasting, treating the corresponding representations output from
+the even-numbered layer GNN as positive samples for each user
+or item.
+
+
+We define the structural neighbors as the set of nodes D
+connected to node a via higher order paths. Benefiting from
+the characteristics of neural networks, the output of the kth
+layer of the GNN contains aggregated information from k-hop
+neighbors. Thus, we consider the output of the kth layer of the
+GNN as the representation of the k-hop neighbors of a node.
+Fig. 2 illustrates our proposed structural contrastive learning
+method. Because the interaction graph G is a bipartite graph,
+a GNN-based model can naturally aggregate information from
+homogeneous structural neighbors during even iterations. We
+can obtain representations of the homogeneous neighbors of
+users or items based on the outputs from even-numbered layers.
+
+These representations allow us to effectively model the relationship between users/items and their homogeneous structural
+neighbors.
+For user u, we consider the homogeneous nodes on even layers of the local GNN as positive samples, and the homogeneous
+neighboring nodes of other users to be negative samples. Using
+the InfoNCE [34], we propose a structure-contrastive learning
+objective to minimize the distance between these embeddings
+
+
+
+
+where e
+(0)
+i represents the initial features or embeddings of the
+user i, e
+(l)
+i represents the normalized output of user i at the lth
+layer of the GNN, l is an even number. e
+(l)
+i · e
+(0)
+i represents the
+dot product similarity between them and τ is the temperature
+parameter.
+We obtain the structural contrastive loss on the item side in
+a similar manner
+
+
+We incorporate the structural contrastive learning loss with
+the recommendation loss in (4) to obtain the final loss function.
+The final loss function is represented as
+L = LBPR + β1(LU
+Con + λLV
+Con) + β2||Θ||2 (7)
+where β1 and β2 are hyperparameters that control the weight
+of the structural contrastive loss and the regularization term,
+respectively. θ represents GNN model parameters.
+
+

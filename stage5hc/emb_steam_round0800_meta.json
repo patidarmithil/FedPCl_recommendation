@@ -1,0 +1,6 @@
+{
+  "dataset": "steam",
+  "round": 800,
+  "n_items": 5113,
+  "embed_dim": 64
+}

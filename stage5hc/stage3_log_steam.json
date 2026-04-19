@@ -1,0 +1,317 @@
+{
+  "dataset": "steam",
+  "hparams": {
+    "embed_dim": 64,
+    "n_gnn_layers": 2,
+    "n_rounds": 400,
+    "clients_per_round": 128,
+    "local_epochs": 10,
+    "n_clusters": 5,
+    "mu1": 0.5,
+    "mu2": 0.5,
+    "cluster_every": 10,
+    "lr_item": 0.1,
+    "lr_user": 0.001,
+    "weight_decay": 1e-06,
+    "eval_every": 10,
+    "top_k": 10
+  },
+  "best_hr": 80.49,
+  "best_ndcg": 57.56,
+  "best_round": 390,
+  "timing": {
+    "total_wall_seconds": 2076.3,
+    "total_wall_minutes": 34.6,
+    "avg_round_seconds": 4.794,
+    "n_rounds": 400
+  },
+  "log": [
+    {
+      "round": 1,
+      "loss": 0.589,
+      "HR@10": 9.476,
+      "NDCG@10": 4.649,
+      "round_time_s": 5.54
+    },
+    {
+      "round": 10,
+      "loss": 0.57194,
+      "HR@10": 11.472,
+      "NDCG@10": 5.627,
+      "round_time_s": 5.62
+    },
+    {
+      "round": 20,
+      "loss": 0.55104,
+      "HR@10": 15.065,
+      "NDCG@10": 7.798,
+      "round_time_s": 5.0
+    },
+    {
+      "round": 30,
+      "loss": 0.54899,
+      "HR@10": 20.335,
+      "NDCG@10": 11.45,
+      "round_time_s": 5.07
+    },
+    {
+      "round": 40,
+      "loss": 0.51743,
+      "HR@10": 26.723,
+      "NDCG@10": 16.387,
+      "round_time_s": 4.99
+    },
+    {
+      "round": 50,
+      "loss": 0.49638,
+      "HR@10": 31.994,
+      "NDCG@10": 20.767,
+      "round_time_s": 5.1
+    },
+    {
+      "round": 60,
+      "loss": 0.46287,
+      "HR@10": 38.808,
+      "NDCG@10": 26.267,
+      "round_time_s": 5.38
+    },
+    {
+      "round": 70,
+      "loss": 0.44119,
+      "HR@10": 46.633,
+      "NDCG@10": 32.125,
+      "round_time_s": 5.07
+    },
+    {
+      "round": 80,
+      "loss": 0.39041,
+      "HR@10": 53.447,
+      "NDCG@10": 37.919,
+      "round_time_s": 4.81
+    },
+    {
+      "round": 90,
+      "loss": 0.3795,
+      "HR@10": 58.105,
+      "NDCG@10": 41.822,
+      "round_time_s": 4.92
+    },
+    {
+      "round": 100,
+      "loss": 0.33599,
+      "HR@10": 63.242,
+      "NDCG@10": 45.465,
+      "round_time_s": 4.79
+    },
+    {
+      "round": 110,
+      "loss": 0.29957,
+      "HR@10": 66.835,
+      "NDCG@10": 47.914,
+      "round_time_s": 4.63
+    },
+    {
+      "round": 120,
+      "loss": 0.2911,
+      "HR@10": 69.417,
+      "NDCG@10": 49.473,
+      "round_time_s": 5.08
+    },
+    {
+      "round": 130,
+      "loss": 0.25079,
+      "HR@10": 71.68,
+      "NDCG@10": 51.115,
+      "round_time_s": 4.84
+    },
+    {
+      "round": 140,
+      "loss": 0.24617,
+      "HR@10": 73.489,
+      "NDCG@10": 52.237,
+      "round_time_s": 5.08
+    },
+    {
+      "round": 150,
+      "loss": 0.23727,
+      "HR@10": 74.341,
+      "NDCG@10": 52.982,
+      "round_time_s": 4.95
+    },
+    {
+      "round": 160,
+      "loss": 0.19221,
+      "HR@10": 75.486,
+      "NDCG@10": 53.65,
+      "round_time_s": 4.68
+    },
+    {
+      "round": 170,
+      "loss": 0.20857,
+      "HR@10": 76.391,
+      "NDCG@10": 54.304,
+      "round_time_s": 4.67
+    },
+    {
+      "round": 180,
+      "loss": 0.20378,
+      "HR@10": 76.178,
+      "NDCG@10": 54.427,
+      "round_time_s": 4.95
+    },
+    {
+      "round": 190,
+      "loss": 0.18242,
+      "HR@10": 76.896,
+      "NDCG@10": 54.637,
+      "round_time_s": 5.58
+    },
+    {
+      "round": 200,
+      "loss": 0.19331,
+      "HR@10": 77.509,
+      "NDCG@10": 55.056,
+      "round_time_s": 6.22
+    },
+    {
+      "round": 210,
+      "loss": 0.17084,
+      "HR@10": 77.615,
+      "NDCG@10": 55.268,
+      "round_time_s": 5.41
+    },
+    {
+      "round": 220,
+      "loss": 0.16427,
+      "HR@10": 77.828,
+      "NDCG@10": 55.4,
+      "round_time_s": 4.92
+    },
+    {
+      "round": 230,
+      "loss": 0.14599,
+      "HR@10": 77.881,
+      "NDCG@10": 55.544,
+      "round_time_s": 5.33
+    },
+    {
+      "round": 240,
+      "loss": 0.15364,
+      "HR@10": 78.254,
+      "NDCG@10": 55.96,
+      "round_time_s": 5.03
+    },
+    {
+      "round": 250,
+      "loss": 0.13233,
+      "HR@10": 78.307,
+      "NDCG@10": 55.92,
+      "round_time_s": 5.23
+    },
+    {
+      "round": 260,
+      "loss": 0.15106,
+      "HR@10": 78.706,
+      "NDCG@10": 56.182,
+      "round_time_s": 4.98
+    },
+    {
+      "round": 270,
+      "loss": 0.15854,
+      "HR@10": 78.813,
+      "NDCG@10": 56.192,
+      "round_time_s": 5.23
+    },
+    {
+      "round": 280,
+      "loss": 0.13128,
+      "HR@10": 79.026,
+      "NDCG@10": 56.284,
+      "round_time_s": 4.86
+    },
+    {
+      "round": 290,
+      "loss": 0.14564,
+      "HR@10": 79.079,
+      "NDCG@10": 56.28,
+      "round_time_s": 5.17
+    },
+    {
+      "round": 300,
+      "loss": 0.15781,
+      "HR@10": 79.265,
+      "NDCG@10": 56.493,
+      "round_time_s": 4.8
+    },
+    {
+      "round": 310,
+      "loss": 0.1319,
+      "HR@10": 79.345,
+      "NDCG@10": 56.404,
+      "round_time_s": 5.31
+    },
+    {
+      "round": 320,
+      "loss": 0.10827,
+      "HR@10": 79.532,
+      "NDCG@10": 56.835,
+      "round_time_s": 4.82
+    },
+    {
+      "round": 330,
+      "loss": 0.1335,
+      "HR@10": 79.691,
+      "NDCG@10": 57.011,
+      "round_time_s": 4.82
+    },
+    {
+      "round": 340,
+      "loss": 0.13168,
+      "HR@10": 79.718,
+      "NDCG@10": 56.765,
+      "round_time_s": 5.08
+    },
+    {
+      "round": 350,
+      "loss": 0.12478,
+      "HR@10": 79.798,
+      "NDCG@10": 57.082,
+      "round_time_s": 5.09
+    },
+    {
+      "round": 360,
+      "loss": 0.10564,
+      "HR@10": 80.011,
+      "NDCG@10": 57.038,
+      "round_time_s": 4.93
+    },
+    {
+      "round": 370,
+      "loss": 0.11263,
+      "HR@10": 80.037,
+      "NDCG@10": 57.14,
+      "round_time_s": 5.07
+    },
+    {
+      "round": 380,
+      "loss": 0.09914,
+      "HR@10": 79.931,
+      "NDCG@10": 57.375,
+      "round_time_s": 4.43
+    },
+    {
+      "round": 390,
+      "loss": 0.09899,
+      "HR@10": 80.49,
+      "NDCG@10": 57.56,
+      "round_time_s": 4.83
+    },
+    {
+      "round": 400,
+      "loss": 0.13006,
+      "HR@10": 80.197,
+      "NDCG@10": 57.433,
+      "round_time_s": 4.91
+    }
+  ]
+}

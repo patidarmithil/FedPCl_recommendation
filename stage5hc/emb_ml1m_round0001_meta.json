@@ -1,0 +1,6 @@
+{
+  "dataset": "ml1m",
+  "round": 1,
+  "n_items": 3706,
+  "embed_dim": 64
+}
