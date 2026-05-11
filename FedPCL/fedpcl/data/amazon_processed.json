@@ -1,0 +1,39 @@
+Dedup: 39115 → 1954  (removed 37161 duplicates)
+
+── DATASET STATS ────────────────────────────────────────────────
+Users:          1954   (paper: 1435)
+Items:             1   (paper: 1522)
+Interactions:   1954   (paper: 35931)
+
+Interactions per user:
+  min=1, max=1, avg=1.0, median=1
+
+Split:
+  Train interactions: 0
+  Test  interactions: 1954 (1 per user)
+  Train/test overlaps: 0  (must be 0)
+
+
+
+Negative samples: min=1, max=1
+
+Sample local graph for user 0:
+  Training items:      [] ...
+  Test item:           1
+  Negatives (first 5): [0]
+  Graph edges (first 3): []
+
+── FINAL DATASET STATISTICS ──────────────────────────────────────
+Metric                              Yours      Paper     Diff
+------------------------------------------------------------
+Users                                1954       1435     +519
+Items                                   1       1522    -1521
+Total interactions                   1954      35931   -33977
+Train interactions                      0
+Test  interactions                   1954
+Density (%)                      100.0000
+Negatives per user                    100
+Split method                   random LOO
+Random seed                            42
+
+Saved → amazon_processed.json
